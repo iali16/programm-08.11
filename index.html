@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <style>
-    html, body { margin: 0; padding: 0; height: 100%; }
-    iframe { width: 100%; height: 100vh; border: 0; }
-  </style>
+<meta charset="UTF-8">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+
+  /* Liquid animated background */
+  body {
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #6a11cb, #2575fc, #00c6ff);
+    background-size: 400% 400%;
+    animation: liquid 12s ease infinite;
+  }
+  @keyframes liquid {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* PDF on top, with margin so liquid shows around it */
+  iframe {
+    position: absolute;
+    inset: 4vh 4vw;              /* margins = liquid visible around PDF */
+    width: 92vw;
+    height: 92vh;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    background: #fff;            /* PDF page area */
+  }
+</style>
 </head>
 <body>
   <iframe src="Affiche%20Novembre%20.pdf"></iframe>
