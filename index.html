@@ -3,34 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <style>
-  html, body { margin: 0; height: 100%; overflow: hidden; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1020; }
 
-  /* Liquid animated background */
-  body {
-    background: linear-gradient(-45deg, #1e3c72, #2a5298, #6a11cb, #2575fc, #00c6ff);
-    background-size: 400% 400%;
-    animation: liquid 12s ease infinite;
+  .liquid {
+    position: fixed; inset: 0; z-index: 0;
+    filter: blur(40px) contrast(1.4);
   }
-  @keyframes liquid {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* PDF on top, with margin so liquid shows around it */
-  iframe {
+  .liquid span {
     position: absolute;
-    inset: 4vh 4vw;              /* margins = liquid visible around PDF */
-    width: 92vw;
-    height: 92vh;
-    border: 0;
+    width: 45vmax; height: 45vmax;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    animation: float 18s ease-in-out infinite;
+  }
+  .liquid span:nth-child(1){ background:#ff2d95; top:-10%; left:-10%; }
+  .liquid span:nth-child(2){ background:#00e5ff; bottom:-15%; right:-10%; animation-delay:-6s; }
+  .liquid span:nth-child(3){ background:#7c4dff; top:20%; left:40%; animation-delay:-12s; }
+  @keyframes float {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%     { transform: translate(8vw,6vh) scale(1.2); }
+    66%     { transform: translate(-6vw,-4vh) scale(0.9); }
+  }
+
+  iframe {
+    position: absolute; inset: 4vh 4vw;
+    width: 92vw; height: 92vh; border: 0;
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    background: #fff;            /* PDF page area */
+    box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    background: #fff; z-index: 1;
   }
 </style>
 </head>
 <body>
+  <div class="liquid"><span></span><span></span><span></span></div>
   <iframe src="Affiche%20Novembre%20.pdf"></iframe>
 </body>
 </html>
